@@ -2,9 +2,13 @@ import sys
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
-    for _ in f:
+    for line in f:
+        L = line
+        _ = L
         {{ arg_e }}
     {%- else %}
-    _ = f.read()
+    line = f.read()
+    L = line
+    _ = L
     {{ arg_e }}
     {%- endif %}
