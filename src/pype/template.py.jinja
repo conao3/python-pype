@@ -1,14 +1,18 @@
+{%- macro arg_e_body() -%}
+L = line
+_ = L
+{{ arg_e }}
+{%- endmacro %}
+
+{#--#}
+
 import sys
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for line in f:
-        L = line
-        _ = L
-        {{ arg_e }}
+        {{ arg_e_body() | indent(8) }}
     {%- else %}
     line = f.read()
-    L = line
-    _ = L
-    {{ arg_e }}
+    {{ arg_e_body() | indent(4) }}
     {%- endif %}
