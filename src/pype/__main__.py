@@ -1,4 +1,9 @@
 import argparse
+import pathlib
+
+import jinja2
+
+env = jinja2.Environment(undefined=jinja2.StrictUndefined)
 
 
 def parse_args() -> argparse.Namespace:
@@ -10,4 +15,10 @@ def parse_args() -> argparse.Namespace:
 
 def main():
     args = parse_args()
-    print(args)
+    template_str = (pathlib.Path(__file__).parent / 'template.py.jinja').read_text()
+
+    dct = {
+        'arg_e': args.e,
+    }
+    template = env.from_string(template_str)
+    print(template.render(dct))
