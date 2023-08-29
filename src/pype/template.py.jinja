@@ -1,1 +1,8 @@
+import sys
+
+{% if arg_n %}
+for _ in sys.stdin:
+    {{ arg_e }}
+{% else %}
 {{ arg_e }}
+{% endif %}
