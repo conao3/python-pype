@@ -1,5 +1,8 @@
 import argparse
+import os
 import pathlib
+import shutil
+import sys
 
 import jinja2
 
@@ -23,4 +26,8 @@ def main():
         'arg_n': args.n,
     }
     template = env.from_string(template_str)
-    print(template.render(dct))
+    print(template.render(dct), flush=True)
+    os.close(1)
+
+    with open('tmp.fifo', 'w') as f:
+        shutil.copyfileobj(sys.stdin, f)

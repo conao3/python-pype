@@ -1,8 +1,10 @@
 import sys
 
-{% if arg_n %}
-for _ in sys.stdin:
+with open("tmp.fifo") as f:
+    {%- if arg_n %}
+    for _ in f:
+        {{ arg_e }}
+    {%- else %}
+    _ = f.read()
     {{ arg_e }}
-{% else %}
-{{ arg_e }}
-{% endif %}
+    {%- endif %}
