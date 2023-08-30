@@ -36,17 +36,16 @@ import sys
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for NR, line in enumerate(f, start=1):
-        {##}
-        {{ arg_l_body() | indent(8) }}
-        {{ arg_a_body_pre() | indent(8) }}
-        {{ arg_large_f_body() | indent(8) }}
-        {{ arg_a_body() | indent(8) }}
-        {{ arg_e_body() | indent(8) }}
+        {{- arg_l_body() | indent(8) }}
+        {{- arg_a_body_pre() | indent(8) }}
+        {{- arg_large_f_body() | indent(8) }}
+        {{- arg_a_body() | indent(8) }}
+        {{- arg_e_body() | indent(8) }}
     {%- else %}
     line = f.read()
-    {{ arg_l_body() | indent(4) }}
-    {{ arg_a_body_pre() | indent(4) }}
-    {{ arg_large_f_body() | indent(4) }}
-    {{ arg_a_body() | indent(4) }}
-    {{ arg_e_body() | indent(4) }}
+    {{- arg_l_body() | indent(4) }}
+    {{- arg_a_body_pre() | indent(4) }}
+    {{- arg_large_f_body() | indent(4) }}
+    {{- arg_a_body() | indent(4) }}
+    {{- arg_e_body() | indent(4) }}
     {%- endif %}
