@@ -29,6 +29,14 @@ __sep = "{{ arg_large_f }}"
 {%- endif %}
 {%- endmacro %}
 
+{%- macro body() -%}
+{{- arg_l_body() }}
+{{- arg_a_body_pre() }}
+{{- arg_large_f_body() }}
+{{- arg_a_body() }}
+{{- arg_e_body() }}
+{%- endmacro %}
+
 {#--#}
 
 import sys
@@ -36,16 +44,8 @@ import sys
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for NR, line in enumerate(f, start=1):
-        {{- arg_l_body() | indent(8) }}
-        {{- arg_a_body_pre() | indent(8) }}
-        {{- arg_large_f_body() | indent(8) }}
-        {{- arg_a_body() | indent(8) }}
-        {{- arg_e_body() | indent(8) }}
+        {{- body() | indent(8) }}
     {%- else %}
     line = f.read()
-    {{- arg_l_body() | indent(4) }}
-    {{- arg_a_body_pre() | indent(4) }}
-    {{- arg_large_f_body() | indent(4) }}
-    {{- arg_a_body() | indent(4) }}
-    {{- arg_e_body() | indent(4) }}
+    {{- body() | indent(4) }}
     {%- endif %}
