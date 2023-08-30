@@ -4,6 +4,12 @@ _ = L
 {{ arg_e }}
 {%- endmacro %}
 
+{%- macro arg_l_body() -%}
+{%- if arg_l %}
+line = line.strip()
+{%- endif %}
+{%- endmacro %}
+
 {#--#}
 
 import sys
@@ -11,8 +17,11 @@ import sys
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for line in f:
+        {##}
+        {{ arg_l_body() | indent(8) }}
         {{ arg_e_body() | indent(8) }}
     {%- else %}
     line = f.read()
+    {{ arg_l_body() | indent(4) }}
     {{ arg_e_body() | indent(4) }}
     {%- endif %}
