@@ -10,6 +10,25 @@ line = line.strip()
 {%- endif %}
 {%- endmacro %}
 
+{%- macro arg_a_body_pre() -%}
+{%- if arg_a %}
+__sep = None
+{%- endif %}
+{%- endmacro %}
+
+{%- macro arg_a_body() -%}
+{%- if arg_a %}
+words = line.split(__sep)
+F = words
+{%- endif %}
+{%- endmacro %}
+
+{%- macro arg_large_f_body() -%}
+{%- if arg_large_f %}
+__sep = "{{ arg_large_f }}"
+{%- endif %}
+{%- endmacro %}
+
 {#--#}
 
 import sys
@@ -19,9 +38,15 @@ with open("tmp.fifo") as f:
     for line in f:
         {##}
         {{ arg_l_body() | indent(8) }}
+        {{ arg_a_body_pre() | indent(8) }}
+        {{ arg_large_f_body() | indent(8) }}
+        {{ arg_a_body() | indent(8) }}
         {{ arg_e_body() | indent(8) }}
     {%- else %}
     line = f.read()
     {{ arg_l_body() | indent(4) }}
+    {{ arg_a_body_pre() | indent(4) }}
+    {{ arg_large_f_body() | indent(4) }}
+    {{ arg_a_body() | indent(4) }}
     {{ arg_e_body() | indent(4) }}
     {%- endif %}
