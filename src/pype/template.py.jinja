@@ -24,29 +24,26 @@ __fs = None
 {%- endmacro %}
 
 {%- macro arg_a_body() %}
-{%- if arg_a -%}
-{##}
+{%- if arg_a %}
 words = line.split(__fs)
 F = words
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_F_body() %}
-{%- if arg_F -%}
-{##}
+{%- if arg_F %}
 __fs = '{{ arg_F }}'
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_p_body() %}
-{%- if arg_p -%}
-{##}
+{%- if arg_p %}
 print(line, end=__ors)
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_m_body() %}
-{%- if arg_m -%}
+{%- if arg_m %}
 {%- for m in arg_m %}
 {%- if not m.endswith(']') %}
 {%- if '=' in m %}
@@ -66,14 +63,14 @@ from {{ m_split[0] }} import {{ m_body }}
 {%- endmacro %}
 
 {%- macro arg_M_body() %}
-{%- if arg_M -%}
+{%- if arg_M %}
 {%- for M in arg_M %}
 from {{ M }} import *
 {%- endfor %}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro body() -%}
+{%- macro body() %}
 {{- arg_l_body() }}
 {{- arg_a_body_pre() }}
 {{- arg_F_body() }}
