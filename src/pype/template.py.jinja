@@ -1,20 +1,22 @@
 {%- macro arg_e_body() -%}
 L = line
 _ = L
-{%- if arg_e %}
-{{ arg_e }}
-{%- endif %}
 {##}
+{%- if arg_e -%}
+{{ arg_e }}
+{##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_l_body() -%}
 {%- if arg_l -%}
 __ors = None
 line = line.strip()
+{##}
 {%- else -%}
 __ors = ''
-{%- endif %}
 {##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body_pre() -%}
