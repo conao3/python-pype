@@ -32,7 +32,19 @@ __sep = "{{ arg_F }}"
 {%- macro arg_m_body() -%}
 {%- if arg_m %}
 {%- for m in arg_m %}
+{%- if not m.endswith(']') %}
+{%- if '=' in m %}
+{%- set m = m.replace('=', ' as ') %}
+{%- endif %}
 import {{ m }}
+{%- else %}
+{%- set m_split = m.split('[') %}
+{%- set m_body = m_split[1][:-1] %}
+{%- if '=' in m_body %}
+{%- set m_body = m_body.replace('=', ' as ') %}
+{%- endif %}
+from {{ m_split[0] }} import {{ m_body }}
+{%- endif %}
 {%- endfor %}
 {%- endif %}
 {%- endmacro %}
