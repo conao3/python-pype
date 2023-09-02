@@ -11,7 +11,7 @@ env = jinja2.Environment(undefined=jinja2.StrictUndefined)
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument('-e', help='execute a command')
+    parser.add_argument('-e', nargs="*", help='execute a command')
     parser.add_argument('-n', default=False, action='store_true', help='-n')
     parser.add_argument('-l', default=False, action='store_true', help='-l')
     parser.add_argument('-a', default=False, action='store_true', help='-a')

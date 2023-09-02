@@ -25,6 +25,22 @@ with open("tmp.fifo") as f:
     assert_stdout(proc, expected)
 
 
+def test_bb9de651():
+    proc = run_pype(['-c', '-e', 'print("hello")', 'print("world")'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    line = f.read()
+    __ors = ''
+    L = line
+    _ = L
+    print("hello")
+    print("world")
+'''
+    assert_stdout(proc, expected)
+
+
 def test_04da38f4():
     proc = run_pype(['-c', '-ne', 'print("hello")'])
     expected = '''\

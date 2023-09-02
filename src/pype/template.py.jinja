@@ -1,12 +1,12 @@
 {%- macro arg_e_body() -%}
 L = line
 _ = L
-{##}
-{%- if arg_e -%}
-{{ arg_e }}
-{##}
+{%- if arg_e %}
+{%- for e in arg_e %}
+{{ e }}
+{%- endfor %}
 {%- endif %}
-{%- endmacro %}
+{% endmacro %}
 
 {%- macro arg_l_body() -%}
 {%- if arg_l -%}
