@@ -25,7 +25,7 @@ __fs = None
 
 {%- macro arg_a_body() %}
 {%- if arg_a %}
-words = line.split(__fs)
+words = [e for e in __re.split(__fs or ' ', line) if e]
 F = words
 {%- endif %}
 {%- endmacro %}
@@ -82,6 +82,7 @@ from {{ M }} import *
 {#--#}
 
 import sys
+import re as __re
 {{- arg_m_body() }}
 {{- arg_M_body() }}
 
