@@ -85,7 +85,7 @@ with open("tmp.fifo") as f:
         __ors = None
         line = line.strip()
         __fs = None
-        __fs = ","
+        __fs = ','
         words = line.split(__fs)
         F = words
         L = line
@@ -105,7 +105,7 @@ with open("tmp.fifo") as f:
         __ors = None
         line = line.strip()
         __fs = None
-        __fs = "-"
+        __fs = '-'
         words = line.split(__fs)
         F = words
         L = line
