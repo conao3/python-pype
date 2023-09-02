@@ -51,3 +51,59 @@ with open("tmp.fifo") as f:
         print("hello")
 '''
     assert_stdout(proc, expected)
+
+
+def test_66260b0f():
+    proc = run_pype(['-c', '-a', '-nle', 'print("hello")'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        __sep = None
+        words = line.split(__sep)
+        F = words
+        L = line
+        _ = L
+        print("hello")
+'''
+    assert_stdout(proc, expected)
+
+
+def test_ed4ca3c4():
+    proc = run_pype(['-c', '-aF,', '-nle', 'print(F[0])'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        __sep = None
+        __sep = ","
+        words = line.split(__sep)
+        F = words
+        L = line
+        _ = L
+        print(F[0])
+'''
+    assert_stdout(proc, expected)
+
+
+def test_e089f925():
+    proc = run_pype(['-c', '-aF-', '-nle', 'print(F[0])'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        __sep = None
+        __sep = "-"
+        words = line.split(__sep)
+        F = words
+        L = line
+        _ = L
+        print(F[0])
+'''
+    assert_stdout(proc, expected)
