@@ -94,7 +94,7 @@ import re as __re
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
-    for NR, line in enumerate(f, start=1):
+    for NR, line in enumerate({% if arg_zero %}f.read().rstrip('\0').split('\0'){% else %}f{% endif %}, start=1):
         {{- body() | indent(8) }}
     {%- else %}
     line = f.read()

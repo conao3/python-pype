@@ -68,6 +68,21 @@ with open("tmp.fifo") as f:
     assert_stdout(proc, expected)
 
 
+def test_1aa48b99():
+    proc = run_pype(['-c', '-n0le', 'print("hello")'])
+    expected = '''\
+# pype
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f.read().rstrip('\\0').split('\\0'), start=1):
+        __ors = None
+        line = line.strip()
+        L = line
+        _ = L
+        print("hello")
+'''
+    assert_stdout(proc, expected)
+
+
 def test_66260b0f():
     proc = run_pype(['-c', '-a', '-nle', 'print("hello")'])
     expected = '''\
