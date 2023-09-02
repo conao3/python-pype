@@ -1,4 +1,4 @@
-{%- macro arg_e_body() -%}
+{%- macro arg_e_body() %}
 L = line
 _ = L
 {%- if arg_e %}
@@ -6,7 +6,7 @@ _ = L
 {{ e }}
 {%- endfor %}
 {%- endif %}
-{% endmacro %}
+{%- endmacro %}
 
 {%- macro arg_l_body() %}
 {%- if arg_l %}
@@ -15,34 +15,33 @@ line = line.strip()
 {%- else %}
 __ors = ''
 {%- endif %}
-{% endmacro %}
+{%- endmacro %}
 
 {%- macro arg_a_body_pre() %}
-{%- if arg_a and not arg_F -%}
+{%- if arg_a and not arg_F %}
 __fs = None
-{##}
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body() %}
 {%- if arg_a -%}
+{##}
 words = line.split(__fs)
 F = words
-{##}
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_F_body() %}
 {%- if arg_F -%}
-__fs = '{{ arg_F }}'
 {##}
+__fs = '{{ arg_F }}'
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_p_body() %}
 {%- if arg_p -%}
-print(line, end=__ors)
 {##}
+print(line, end=__ors)
 {%- endif %}
 {%- endmacro %}
 
