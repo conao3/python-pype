@@ -29,7 +29,7 @@ def main():
         'arg_n': args.n,
         'arg_l': args.l,
         'arg_a': args.a,
-        'arg_large_f': args.F
+        'arg_F': args.F
     }
     template = env.from_string(template_str)
     print(template.render(dct), flush=True)

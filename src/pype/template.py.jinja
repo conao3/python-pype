@@ -23,16 +23,16 @@ F = words
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_large_f_body() -%}
-{%- if arg_large_f %}
-__sep = "{{ arg_large_f }}"
+{%- macro arg_F_body() -%}
+{%- if arg_F %}
+__sep = "{{ arg_F }}"
 {%- endif %}
 {%- endmacro %}
 
 {%- macro body() -%}
 {{- arg_l_body() }}
 {{- arg_a_body_pre() }}
-{{- arg_large_f_body() }}
+{{- arg_F_body() }}
 {{- arg_a_body() }}
 {{- arg_e_body() }}
 {%- endmacro %}
