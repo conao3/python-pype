@@ -20,26 +20,30 @@ __ors = ''
 {%- macro arg_a_body_pre() -%}
 {%- if arg_a -%}
 __sep = None
-{% endif %}
+{##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body() -%}
 {%- if arg_a -%}
 words = line.split(__sep)
 F = words
-{% endif %}
+{##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_F_body() -%}
 {%- if arg_F -%}
 __sep = "{{ arg_F }}"
-{% endif %}
+{##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_p_body() -%}
 {%- if arg_p -%}
 print(line, end=__ors)
-{% endif %}
+{##}
+{%- endif %}
 {%- endmacro %}
 
 {%- macro arg_m_body() -%}
