@@ -21,14 +21,14 @@ __ors = ''
 
 {%- macro arg_a_body_pre() -%}
 {%- if arg_a -%}
-__sep = None
+__fs = None
 {##}
 {%- endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body() -%}
 {%- if arg_a -%}
-words = line.split(__sep)
+words = line.split(__fs)
 F = words
 {##}
 {%- endif %}
@@ -36,7 +36,7 @@ F = words
 
 {%- macro arg_F_body() -%}
 {%- if arg_F -%}
-__sep = "{{ arg_F }}"
+__fs = "{{ arg_F }}"
 {##}
 {%- endif %}
 {%- endmacro %}

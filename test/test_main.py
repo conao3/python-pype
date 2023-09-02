@@ -65,8 +65,8 @@ with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
         __ors = None
         line = line.strip()
-        __sep = None
-        words = line.split(__sep)
+        __fs = None
+        words = line.split(__fs)
         F = words
         L = line
         _ = L
@@ -84,9 +84,9 @@ with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
         __ors = None
         line = line.strip()
-        __sep = None
-        __sep = ","
-        words = line.split(__sep)
+        __fs = None
+        __fs = ","
+        words = line.split(__fs)
         F = words
         L = line
         _ = L
@@ -104,9 +104,9 @@ with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
         __ors = None
         line = line.strip()
-        __sep = None
-        __sep = "-"
-        words = line.split(__sep)
+        __fs = None
+        __fs = "-"
+        words = line.split(__fs)
         F = words
         L = line
         _ = L
