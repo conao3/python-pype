@@ -5,28 +5,28 @@ _ = L
 {%- endmacro %}
 
 {%- macro arg_l_body() -%}
-{%- if arg_l %}
+{%- if arg_l -%}
 line = line.strip()
-{%- endif %}
+{% endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body_pre() -%}
-{%- if arg_a %}
+{%- if arg_a -%}
 __sep = None
-{%- endif %}
+{% endif %}
 {%- endmacro %}
 
 {%- macro arg_a_body() -%}
-{%- if arg_a %}
+{%- if arg_a -%}
 words = line.split(__sep)
 F = words
-{%- endif %}
+{% endif %}
 {%- endmacro %}
 
 {%- macro arg_F_body() -%}
-{%- if arg_F %}
+{%- if arg_F -%}
 __sep = "{{ arg_F }}"
-{%- endif %}
+{% endif %}
 {%- endmacro %}
 
 {%- macro body() -%}
@@ -44,8 +44,8 @@ import sys
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for NR, line in enumerate(f, start=1):
-        {{- body() | indent(8) }}
+        {{ body() | indent(8) }}
     {%- else %}
     line = f.read()
-    {{- body() | indent(4) }}
+    {{ body() | indent(4) }}
     {%- endif %}
