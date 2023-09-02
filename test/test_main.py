@@ -107,3 +107,36 @@ with open("tmp.fifo") as f:
         print(F[0])
 '''
     assert_stdout(proc, expected)
+
+
+def test_dce9b4ec():
+    proc = run_pype(['-c', '-m', 'datetime', '-nle', 'print("hello")'])
+    expected = '''\
+import sys
+import datetime
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        L = line
+        _ = L
+        print("hello")
+'''
+    assert_stdout(proc, expected)
+
+
+def test_468cf587():
+    proc = run_pype(['-c', '-m', 'datetime', 're', '-nle', 'print("hello")'])
+    expected = '''\
+import sys
+import datetime
+import re
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        L = line
+        _ = L
+        print("hello")
+'''
+    assert_stdout(proc, expected)

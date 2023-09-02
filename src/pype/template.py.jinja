@@ -29,6 +29,14 @@ __sep = "{{ arg_F }}"
 {% endif %}
 {%- endmacro %}
 
+{%- macro arg_m_body() -%}
+{%- if arg_m %}
+{%- for m in arg_m %}
+import {{ m }}
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+
 {%- macro body() -%}
 {{- arg_l_body() }}
 {{- arg_a_body_pre() }}
@@ -40,6 +48,7 @@ __sep = "{{ arg_F }}"
 {#--#}
 
 import sys
+{{- arg_m_body() }}
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
