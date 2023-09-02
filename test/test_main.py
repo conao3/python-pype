@@ -192,3 +192,34 @@ with open("tmp.fifo") as f:
         print("hello")
 '''
     assert_stdout(proc, expected)
+
+
+def test_ffd5b397():
+    proc = run_pype(['-c', '-nlp'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        L = line
+        _ = L
+        print(line)
+'''
+    assert_stdout(proc, expected)
+
+
+def test_f9105054():
+    proc = run_pype(['-c', '-nlp', '-e', 'line = line[:-1]'])
+    expected = '''\
+import sys
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        L = line
+        _ = L
+        line = line[:-1]
+        print(line)
+'''
+    assert_stdout(proc, expected)

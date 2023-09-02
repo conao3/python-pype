@@ -16,6 +16,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('-l', default=False, action='store_true', help='-l')
     parser.add_argument('-a', default=False, action='store_true', help='-a')
     parser.add_argument('-F', type=str, help='-F')
+    parser.add_argument('-p', default=False, action='store_true', help='-p')
 
     parser.add_argument('-m', type=str, nargs="*", help='-m')
     parser.add_argument('-M', type=str, nargs="*", help='-M')
@@ -35,11 +36,12 @@ def main():
         'arg_l': args.l,
         'arg_a': args.a,
         'arg_F': args.F,
+        'arg_p': args.p,
         'arg_m': args.m,
         'arg_M': args.M,
     }
     template = env.from_string(template_str)
-    print(template.render(dct), flush=True)
+    print(template.render(dct), flush=True, end='')
     os.close(1)
 
     if not args.c:

@@ -1,7 +1,10 @@
 {%- macro arg_e_body() -%}
 L = line
 _ = L
+{%- if arg_e %}
 {{ arg_e }}
+{%- endif %}
+{##}
 {%- endmacro %}
 
 {%- macro arg_l_body() -%}
@@ -29,8 +32,14 @@ __sep = "{{ arg_F }}"
 {% endif %}
 {%- endmacro %}
 
+{%- macro arg_p_body() -%}
+{%- if arg_p -%}
+print(line)
+{% endif %}
+{%- endmacro %}
+
 {%- macro arg_m_body() -%}
-{%- if arg_m %}
+{%- if arg_m -%}
 {%- for m in arg_m %}
 {%- if not m.endswith(']') %}
 {%- if '=' in m %}
@@ -49,8 +58,8 @@ from {{ m_split[0] }} import {{ m_body }}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_M_body() %}
-{%- if arg_M %}
+{%- macro arg_M_body() -%}
+{%- if arg_M -%}
 {%- for M in arg_M %}
 from {{ M }} import *
 {%- endfor %}
@@ -63,6 +72,7 @@ from {{ M }} import *
 {{- arg_F_body() }}
 {{- arg_a_body() }}
 {{- arg_e_body() }}
+{{- arg_p_body() }}
 {%- endmacro %}
 
 {#--#}
