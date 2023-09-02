@@ -84,7 +84,6 @@ with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
         __ors = None
         line = line.strip()
-        __fs = None
         __fs = ','
         words = line.split(__fs)
         F = words
@@ -104,7 +103,6 @@ with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
         __ors = None
         line = line.strip()
-        __fs = None
         __fs = '-'
         words = line.split(__fs)
         F = words

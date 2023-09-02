@@ -20,7 +20,7 @@ __ors = ''
 {%- endmacro %}
 
 {%- macro arg_a_body_pre() -%}
-{%- if arg_a -%}
+{%- if arg_a and not arg_F -%}
 __fs = None
 {##}
 {%- endif %}
