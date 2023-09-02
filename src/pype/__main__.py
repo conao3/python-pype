@@ -17,6 +17,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument('-a', default=False, action='store_true', help='-a')
     parser.add_argument('-F', type=str, help='-F')
 
+    parser.add_argument('-c', default=False, action='store_true', help='print source code only')
+
     return parser.parse_args()
 
 
@@ -35,5 +37,6 @@ def main():
     print(template.render(dct), flush=True)
     os.close(1)
 
-    with open('tmp.fifo', 'w') as f:
-        shutil.copyfileobj(sys.stdin, f)
+    if not args.c:
+        with open('tmp.fifo', 'w') as f:
+            shutil.copyfileobj(sys.stdin, f)
