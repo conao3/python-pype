@@ -8,25 +8,23 @@ _ = L
 {%- endif %}
 {% endmacro %}
 
-{%- macro arg_l_body() -%}
-{%- if arg_l -%}
+{%- macro arg_l_body() %}
+{%- if arg_l %}
 __ors = None
 line = line.strip()
-{##}
-{%- else -%}
+{%- else %}
 __ors = ''
-{##}
 {%- endif %}
-{%- endmacro %}
+{% endmacro %}
 
-{%- macro arg_a_body_pre() -%}
+{%- macro arg_a_body_pre() %}
 {%- if arg_a and not arg_F -%}
 __fs = None
 {##}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_a_body() -%}
+{%- macro arg_a_body() %}
 {%- if arg_a -%}
 words = line.split(__fs)
 F = words
@@ -34,21 +32,21 @@ F = words
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_F_body() -%}
+{%- macro arg_F_body() %}
 {%- if arg_F -%}
 __fs = '{{ arg_F }}'
 {##}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_p_body() -%}
+{%- macro arg_p_body() %}
 {%- if arg_p -%}
 print(line, end=__ors)
 {##}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_m_body() -%}
+{%- macro arg_m_body() %}
 {%- if arg_m -%}
 {%- for m in arg_m %}
 {%- if not m.endswith(']') %}
@@ -68,7 +66,7 @@ from {{ m_split[0] }} import {{ m_body }}
 {%- endif %}
 {%- endmacro %}
 
-{%- macro arg_M_body() -%}
+{%- macro arg_M_body() %}
 {%- if arg_M -%}
 {%- for M in arg_M %}
 from {{ M }} import *
@@ -94,8 +92,8 @@ import sys
 with open("tmp.fifo") as f:
     {%- if arg_n %}
     for NR, line in enumerate(f, start=1):
-        {{ body() | indent(8) }}
+        {{- body() | indent(8) }}
     {%- else %}
     line = f.read()
-    {{ body() | indent(4) }}
+    {{- body() | indent(4) }}
     {%- endif %}
