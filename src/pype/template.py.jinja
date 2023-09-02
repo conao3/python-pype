@@ -81,12 +81,16 @@ from {{ M }} import *
 
 {#--#}
 
-import sys
+# pype
+
 {%- if arg_a %}
 import re as __re
 {%- endif %}
 {{- arg_m_body() }}
 {{- arg_M_body() }}
+{##}
+
+{#--#}
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
