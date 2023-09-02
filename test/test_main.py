@@ -175,3 +175,20 @@ with open("tmp.fifo") as f:
         print("hello")
 '''
     assert_stdout(proc, expected)
+
+
+def test_b6da375e():
+    proc = run_pype(['-c', '-m', 'datetime[*]', '-M', 're', '-nle', 'print("hello")'])
+    expected = '''\
+import sys
+from datetime import *
+from re import *
+
+with open("tmp.fifo") as f:
+    for NR, line in enumerate(f, start=1):
+        line = line.strip()
+        L = line
+        _ = L
+        print("hello")
+'''
+    assert_stdout(proc, expected)

@@ -49,6 +49,14 @@ from {{ m_split[0] }} import {{ m_body }}
 {%- endif %}
 {%- endmacro %}
 
+{%- macro arg_M_body() %}
+{%- if arg_M %}
+{%- for M in arg_M %}
+from {{ M }} import *
+{%- endfor %}
+{%- endif %}
+{%- endmacro %}
+
 {%- macro body() -%}
 {{- arg_l_body() }}
 {{- arg_a_body_pre() }}
@@ -61,6 +69,7 @@ from {{ m_split[0] }} import {{ m_body }}
 
 import sys
 {{- arg_m_body() }}
+{{- arg_M_body() }}
 
 with open("tmp.fifo") as f:
     {%- if arg_n %}
