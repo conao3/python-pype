@@ -41,7 +41,7 @@ def main():
         'arg_M': args.M,
     }
     template = env.from_string(template_str)
-    print(template.render(dct), flush=True, end='')
+    print(template.render(dct), flush=True)
     os.close(1)
 
     if not args.c:

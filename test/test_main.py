@@ -14,7 +14,6 @@ def test_91d1d7b1():
     proc = run_pype(['-c', '-e', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     line = f.read()
@@ -30,7 +29,6 @@ def test_bb9de651():
     proc = run_pype(['-c', '-e', 'print("hello")', 'print("world")'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     line = f.read()
@@ -47,7 +45,6 @@ def test_04da38f4():
     proc = run_pype(['-c', '-ne', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
@@ -63,7 +60,6 @@ def test_c604fcbf():
     proc = run_pype(['-c', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
@@ -160,7 +156,6 @@ def test_dce9b4ec():
     proc = run_pype(['-c', '-m', 'datetime', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 import datetime
 
 with open("tmp.fifo") as f:
@@ -178,7 +173,6 @@ def test_468cf587():
     proc = run_pype(['-c', '-m', 'datetime', 're', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 import datetime
 import re
 
@@ -197,7 +191,6 @@ def test_2811f31f():
     proc = run_pype(['-c', '-m', 'datetime', 'os.path[join,exists]', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 import datetime
 from os.path import join,exists
 
@@ -216,7 +209,6 @@ def test_ee6aaa3b():
     proc = run_pype(['-c', '-m', 'os', 'datetime=dt', 'os.path[join=jn,exists]', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 import os
 import datetime as dt
 from os.path import join as jn,exists
@@ -236,7 +228,6 @@ def test_b6da375e():
     proc = run_pype(['-c', '-m', 'datetime[*]', '-M', 're', '-nle', 'print("hello")'])
     expected = '''\
 import sys
-import re as __re
 from datetime import *
 from re import *
 
@@ -255,7 +246,6 @@ def test_ffd5b397():
     proc = run_pype(['-c', '-nlp'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
@@ -272,7 +262,6 @@ def test_f9105054():
     proc = run_pype(['-c', '-nlp', '-e', 'line = line[:-1]'])
     expected = '''\
 import sys
-import re as __re
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
