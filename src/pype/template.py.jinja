@@ -9,8 +9,12 @@ _ = L
 
 {%- macro arg_l_body() -%}
 {%- if arg_l -%}
+__ors = None
 line = line.strip()
-{% endif %}
+{%- else -%}
+__ors = ''
+{%- endif %}
+{##}
 {%- endmacro %}
 
 {%- macro arg_a_body_pre() -%}
@@ -34,7 +38,7 @@ __sep = "{{ arg_F }}"
 
 {%- macro arg_p_body() -%}
 {%- if arg_p -%}
-print(line)
+print(line, end=__ors)
 {% endif %}
 {%- endmacro %}
 

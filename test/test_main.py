@@ -17,6 +17,7 @@ import sys
 
 with open("tmp.fifo") as f:
     line = f.read()
+    __ors = ''
     L = line
     _ = L
     print("hello")
@@ -31,6 +32,7 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = ''
         L = line
         _ = L
         print("hello")
@@ -45,6 +47,7 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -60,6 +63,7 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         __sep = None
         words = line.split(__sep)
@@ -78,6 +82,7 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         __sep = None
         __sep = ","
@@ -97,6 +102,7 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         __sep = None
         __sep = "-"
@@ -117,6 +123,7 @@ import datetime
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -134,6 +141,7 @@ import re
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -151,6 +159,7 @@ from os.path import join,exists
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -169,6 +178,7 @@ from os.path import join as jn,exists
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -186,6 +196,7 @@ from re import *
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
@@ -201,10 +212,11 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
-        print(line)
+        print(line, end=__ors)
 '''
     assert_stdout(proc, expected)
 
@@ -216,10 +228,11 @@ import sys
 
 with open("tmp.fifo") as f:
     for NR, line in enumerate(f, start=1):
+        __ors = None
         line = line.strip()
         L = line
         _ = L
         line = line[:-1]
-        print(line)
+        print(line, end=__ors)
 '''
     assert_stdout(proc, expected)
