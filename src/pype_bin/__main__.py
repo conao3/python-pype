@@ -6,6 +6,8 @@ import sys
 
 import jinja2
 
+from . import lib
+
 env = jinja2.Environment(undefined=jinja2.StrictUndefined)
 
 
@@ -31,21 +33,23 @@ def main():
     args = parse_args()
     template_str = (pathlib.Path(__file__).parent / 'template.py.jinja').read_text()
 
-    dct = {
-        'arg_e': args.e,
-        'arg_n': args.n,
-        'arg_l': args.l,
-        'arg_a': args.a,
-        'arg_F': args.F,
-        'arg_p': args.p,
-        'arg_zero': args.zero,
-        'arg_m': args.m,
-        'arg_M': args.M,
-    }
-    template = env.from_string(template_str)
-    print(template.render(dct), flush=True)
-    os.close(1)
+    with lib.subr.NamedTemporaryFifo() as filepath:
+        dct = {
+            'fifo_filepath': filepath if not args.c else 'tmp.fifo',
+            'arg_e': args.e,
+            'arg_n': args.n,
+            'arg_l': args.l,
+            'arg_a': args.a,
+            'arg_F': args.F,
+            'arg_p': args.p,
+            'arg_zero': args.zero,
+            'arg_m': args.m,
+            'arg_M': args.M,
+        }
+        template = env.from_string(template_str)
+        print(template.render(dct), flush=True)
+        os.close(1)
 
-    if not args.c:
-        with open('tmp.fifo', 'w') as f:
-            shutil.copyfileobj(sys.stdin, f)
+        if not args.c:
+            with open(filepath, 'w') as f:
+                shutil.copyfileobj(sys.stdin, f)

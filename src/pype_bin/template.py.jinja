@@ -92,7 +92,7 @@ import re as __re
 
 {#--#}
 
-with open("tmp.fifo") as f:
+with open("{{ fifo_filepath }}") as f:
     {%- if arg_n %}
     for NR, line in enumerate({% if arg_zero %}f.read().rstrip('\0').split('\0'){% else %}f{% endif %}, start=1):
         {{- body() | indent(8) }}
