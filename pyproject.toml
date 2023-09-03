@@ -5,10 +5,9 @@ description = ""
 authors = ["Naoya Yamashita <conao3@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
-packages = [{ include = "src/pype" }]
 
 [tool.poetry.scripts]
-pype = "pype.__main__:main"
+pype = "pype_bin.__main__:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
