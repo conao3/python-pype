@@ -1,10 +1,11 @@
 [tool.poetry]
 name = "pype-bin"
-version = "0.1.1"
+version = "0.1.2"
 description = ""
 authors = ["Naoya Yamashita <conao3@gmail.com>"]
 license = "Apache-2.0"
 readme = "README.md"
+packages = [{include = "pype_bin", from = "src"}]
 
 [tool.poetry.scripts]
 pype = "pype_bin.__main__:main"
