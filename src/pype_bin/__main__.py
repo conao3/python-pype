@@ -35,7 +35,7 @@ def main():
 
     with lib.subr.NamedTemporaryFifo() as filepath:
         dct = {
-            'fifo_filepath': filepath if not args.c else 'tmp.fifo',
+            'fifo_filepath': filepath,
             'arg_e': args.e,
             'arg_n': args.n,
             'arg_l': args.l,
