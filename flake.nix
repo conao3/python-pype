@@ -41,7 +41,7 @@
             version = "0.1.2";
             pyproject = true;
             src = ./.;
-            build-system = [ pkgs.python.pkgs.poetry-core ];
+            build-system = [ pkgs.python.pkgs.hatchling ];
             dependencies = [ pkgs.python.pkgs.jinja2 ];
             meta.mainProgram = "pype";
           };
