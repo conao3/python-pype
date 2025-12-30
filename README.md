@@ -1,8 +1,16 @@
-# python-pype
+# pype
 
-A Perl-like one-liner processor for Python.
+A Perl-like one-liner processor for Python. Write quick command-line data transformations using Python syntax with the convenience of Perl's `-n`, `-p`, and `-a` flags.
 
-## Install
+## Features
+
+- **Line-by-line processing** with automatic input handling
+- **Auto-split mode** for easy field extraction
+- **Flexible module imports** with aliasing support
+- **Code generation** mode for debugging and learning
+- Familiar interface for anyone who has used Perl one-liners
+
+## Installation
 
 ### pip
 
@@ -13,11 +21,24 @@ pip install pype-bin
 ### Nix
 
 ```bash
+# Run directly
 nix run github:conao3/python-pype
+
+# Install to profile
+nix profile install github:conao3/python-pype
 ```
 
+## Quick Start
+
 ```bash
-nix profile install github:conao3/python-pype
+# Print each line with line numbers
+cat file.txt | pype -n -e 'print(NR, line)' | python
+
+# Convert to uppercase
+cat file.txt | pype -n -l -e 'print(line.upper())' | python
+
+# Extract the second field from space-separated data
+echo "a b c" | pype -n -a -e 'print(F[1])' | python
 ```
 
 ## Usage
@@ -41,7 +62,7 @@ cat input.txt | pype [options] | python
 | `-M MODULE` | Import all from module (e.g., `-M pathlib`) |
 | `-c` | Print generated Python source code only (without execution) |
 
-### Variables
+### Built-in Variables
 
 | Variable | Description |
 |----------|-------------|
@@ -52,42 +73,58 @@ cat input.txt | pype [options] | python
 
 ## Examples
 
+### Basic Line Processing
+
 Print each line:
+
 ```bash
 cat file.txt | pype -n -e 'print(line)' | python
 ```
 
-Print line numbers:
+Print with line numbers:
+
 ```bash
 cat file.txt | pype -n -e 'print(NR, line)' | python
 ```
 
+### Text Transformation
+
 Convert to uppercase:
+
 ```bash
 cat file.txt | pype -n -l -e 'print(line.upper())' | python
 ```
 
-Sum numbers:
-```bash
-seq 10 | pype -n -e 'total = total + int(line) if "total" in dir() else int(line)' -e 'if NR == 10: print(total)' | python
-```
+### Field Extraction
 
-Print second field:
+Print the second field (space-separated):
+
 ```bash
 echo "a b c" | pype -n -a -e 'print(F[1])' | python
 ```
 
-Use custom separator:
+Use a custom separator:
+
 ```bash
 echo "a:b:c" | pype -n -a -F: -e 'print(F[1])' | python
 ```
 
-Use module:
+### Working with Modules
+
+Parse JSON:
+
 ```bash
 echo '{"a": 1}' | pype -m json -e 'print(json.loads(line))' | python
 ```
 
-Show generated code:
+### Debugging
+
+View the generated Python code:
+
 ```bash
 echo "hello" | pype -n -l -p -c
 ```
+
+## License
+
+See [LICENSE](LICENSE) for details.
