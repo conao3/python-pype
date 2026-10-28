@@ -27,7 +27,7 @@
           overlay =
             final: prev:
             let
-              python = prev.python312;
+              python = prev.python315;
             in
             {
               inherit python;
